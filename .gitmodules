@@ -1,0 +1,18 @@
+[submodule ".vim/bundle/skittles_berry"]
+	path = .vim/bundle/skittles_berry
+	url = git://github.com/shawncplus/skittles_berry.git
+[submodule ".vim/bundle/L9"]
+	path = .vim/bundle/L9
+	url = git://github.com/vim-scripts/L9.git
+[submodule ".vim/bundle/FuzzyFinder"]
+	path = .vim/bundle/FuzzyFinder
+	url = git://github.com/vim-scripts/FuzzyFinder.git
+[submodule ".vim/bundle/Command-T"]
+	path = .vim/bundle/Command-T
+	url = git://github.com/wincent/Command-T.git
+[submodule ".vim/bundle/vim-fugitive"]
+	path = .vim/bundle/vim-fugitive
+	url = git://github.com/tpope/vim-fugitive.git
+[submodule ".vim/bundle/vim-powerline"]
+	path = .vim/bundle/vim-powerline
+	url = git://github.com/Lokaltog/vim-powerline.git
