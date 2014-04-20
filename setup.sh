@@ -1,5 +1,5 @@
 #!/bin/bash
-for f in .vim .vimrc; do
+for f in .screenrc .vim .vimrc; do
     target="dotfiles/$f"
     if [ -e ~/$f ]; then
     if [ "$(readlink ~/$f)" = "$target" ]; then
