@@ -1,20 +1,19 @@
 "some sensible stuff
 set number "line numbering
-set showcmd "show normal mode commands inthe status bar
-set splitright "create splits verticall to the right
+set showcmd "show normal mode commands in the status bar
+set splitright "create splits vertically to the right
 set splitbelow
 
-"Center the screen when changing lines
-set so=999 "scrolloff
+set scrolloff=999 "Center the screen when changing lines
 
 "Move the help split to the right
 autocmd FileType help wincmd L
 
 set titlestring=%t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)
-if &term == "screen"
+if &term == "screen" || &term == "screen-256color"
   set t_ts=k
   set t_fs=\
 endif
-set notitle
+set title
 set ruler
 
