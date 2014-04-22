@@ -1,15 +1,17 @@
 #!/bin/bash
 git submodule update --init
-for f in .screenrc .vim .vimrc; do
+for f in screenrc vim vimrc; do
+    source="$HOME/.$f"
     target="dotfiles/$f"
-    if [ -e ~/$f ]; then
-    if [ "$(readlink ~/$f)" = "$target" ]; then
-        echo "$f already installed"
-        continue
+    if [ -e $source ]; then
+        if [ "$(readlink $source)" = "$target" ]; then
+            echo "$f already installed"
+            continue
+        fi
+        echo $source exists, moving it to $source.bak
+        mv $source $source.bak
     fi
-        echo $f exists, moving it to ~/$f.bak
-        mv ~/$f ~/$f.bak
-    fi
-    mkdir -p $(dirname ~/$f)
-    ln -sf $target ~/$f
+    mkdir -p $(dirname $source)
+    ln -sf $target $source
+    echo "$f installed"
 done
