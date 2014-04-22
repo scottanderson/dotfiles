@@ -1,4 +1,5 @@
 #!/bin/bash
+git submodule update --init
 for f in .screenrc .vim .vimrc; do
     target="dotfiles/$f"
     if [ -e ~/$f ]; then
