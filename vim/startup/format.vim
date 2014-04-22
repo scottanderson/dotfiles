@@ -9,8 +9,8 @@ set tabstop=4
 
 au BufRead,BufNewFile *.rc set filetype=sh
 
+highlight OverLength ctermbg=magenta guibg=#592929
 augroup vimrc_autocmds
-  autocmd BufNewFile,BufRead,BufEnter * highlight OverLength ctermbg=magenta guibg=#592929
   autocmd BufEnter * match OverLength /\%100v/
   autocmd BufNewFile,BufRead COMMIT_EDITMSG match OverLength /\%72v/
   autocmd BufNewFile,BufRead COMMIT_EDITMSG set textwidth=72
