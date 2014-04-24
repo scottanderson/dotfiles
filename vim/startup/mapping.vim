@@ -12,6 +12,18 @@ vno <Right> <Nop>
 vno <Up>    <Nop>
 vno <Down>  <Nop>
 
+"Map ctrl+hjkl to pgup/dn, home/end
+no <C-h> 0
+no <C-j> <C-d>
+no <C-k> <C-u>
+no <C-l> $
+
+"Insert mode movement
+ino <C-h> <Left>
+ino <C-j> <Down>
+ino <C-k> <Up>
+ino <C-l> <Right>
+
 " Rewire n and N to blink when highlighing
 nnoremap <silent> n   n:call HLNext(0.2)<cr>
 nnoremap <silent> N   N:call HLNext(0.2)<cr>
