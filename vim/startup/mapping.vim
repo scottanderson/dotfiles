@@ -27,3 +27,6 @@ ino <C-l> <Right>
 " Rewire n and N to blink when highlighing
 nnoremap <silent> n   n:call HLNext(0.2)<cr>
 nnoremap <silent> N   N:call HLNext(0.2)<cr>
+
+"Toggle spell checking
+nmap <silent> <leader>s :set spell!<cr>
