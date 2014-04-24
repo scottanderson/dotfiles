@@ -8,5 +8,5 @@ source ~/.vim/startup/format.vim
 source ~/.vim/startup/mapping.vim
 
 "Re-source vimrc
-autocmd BufWritePost .vimrc,.vim/* source %
+autocmd! BufWritePost ~/.vimrc,~/.vim/startup/*.vim source %
 
