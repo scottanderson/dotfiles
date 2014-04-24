@@ -3,7 +3,9 @@ set laststatus=2
 let g:Powerline_symbols='fancy'
 
 "skittles_berry config
-set term=screen-256color
+if !has("gui_running")
+    set term=screen-256color
+endif
 colo skittles_berry
 set cursorline
 

@@ -17,3 +17,5 @@ endif
 set title
 set ruler
 
+"Make it more obvious which buffers are active
+set fillchars+=stlnc:\
