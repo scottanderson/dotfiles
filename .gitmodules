@@ -16,3 +16,12 @@
 [submodule "vim/bundle/vim-powerline"]
 	path = vim/bundle/vim-powerline
 	url = git://github.com/Lokaltog/vim-powerline.git
+[submodule "vim/bundle/syntactic"]
+	path = vim/bundle/syntactic
+	url = git://github.com/scrooloose/syntastic.git
+[submodule "vim/bundle/indentpython.vim"]
+	path = vim/bundle/indentpython.vim
+	url = git://github.com/vim-scripts/indentpython.vim.git
+[submodule "vim/bundle/pydiction"]
+	path = vim/bundle/pydiction
+	url = git://github.com/rkulla/pydiction.git

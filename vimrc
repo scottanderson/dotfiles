@@ -7,6 +7,7 @@ source ~/.vim/startup/environ.vim
 source ~/.vim/startup/format.vim
 source ~/.vim/startup/mapping.vim
 source ~/.vim/startup/spell.vim
+source ~/.vim/startup/syntax.vim
 
 "Re-source vimrc
 autocmd! BufWritePost ~/.vimrc,~/.vim/startup/*.vim source %
