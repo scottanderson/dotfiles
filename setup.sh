@@ -1,6 +1,7 @@
 #!/bin/bash
 git submodule update --init
-for f in screenrc vim vimrc; do
+git config --global core.excludesfile '~/.cvsignore'
+for f in cvsignore screenrc vim vimrc; do
     source="$HOME/.$f"
     target="dotfiles/$f"
     if [ -e $source ]; then
