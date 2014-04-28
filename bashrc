@@ -1,6 +1,6 @@
 #!/bin/bash
 # This file isn't installed by setup.sh because it's a stub. I've currently got too many things that
-# are machine specific. When I get around to cleaning that up, I will 
+# are machine specific. When I get around to cleaning that up, I will add it to setup.sh.
 export EDITOR=vim
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD/$HOME/~}\007"'
 function promptCommand() {
@@ -13,3 +13,8 @@ function promptCommand() {
     echo -ne "\007"
 }
 export PROMPT_COMMAND='promptCommand'
+
+if [[ "$(uname -s)" == "Darwin" ]]; then
+    alias vim='mvim -v'
+    alias vi='mvim -v'
+fi
