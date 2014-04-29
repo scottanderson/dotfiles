@@ -28,5 +28,9 @@ ino <C-l> <Right>
 nnoremap <silent> n   n:call HLNext(0.2)<cr>
 nnoremap <silent> N   N:call HLNext(0.2)<cr>
 
+"Ctrl+n/p to jump through the buffers
+nmap <C-p> :bp<cr>
+nmap <C-n> :bn<cr>
+
 "Toggle spell checking
 nmap <silent> <leader>s :set spell!<cr>
