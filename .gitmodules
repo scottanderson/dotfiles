@@ -25,3 +25,6 @@
 [submodule "vim/bundle/pydiction"]
 	path = vim/bundle/pydiction
 	url = git://github.com/rkulla/pydiction.git
+[submodule "vim/bundle/vim-unimpared"]
+	path = vim/bundle/vim-unimpared
+	url = git://github.com/tpope/vim-unimpaired.git
