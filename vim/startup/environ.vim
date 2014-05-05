@@ -19,3 +19,6 @@ set ruler
 
 "Make it more obvious which buffers are active
 set fillchars+=stlnc:\
+
+"Syntastic
+let g:syntastic_java_javac_config_file_enabled=1
