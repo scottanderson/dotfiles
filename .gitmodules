@@ -7,9 +7,6 @@
 [submodule "vim/bundle/FuzzyFinder"]
 	path = vim/bundle/FuzzyFinder
 	url = git://github.com/vim-scripts/FuzzyFinder.git
-[submodule "vim/bundle/Command-T"]
-	path = vim/bundle/Command-T
-	url = git://github.com/wincent/Command-T.git
 [submodule "vim/bundle/vim-fugitive"]
 	path = vim/bundle/vim-fugitive
 	url = git://github.com/tpope/vim-fugitive.git
@@ -28,3 +25,6 @@
 [submodule "vim/bundle/vim-unimpared"]
 	path = vim/bundle/vim-unimpared
 	url = git://github.com/tpope/vim-unimpaired.git
+[submodule "vim/bundle/ctrlp.vim"]
+	path = vim/bundle/ctrlp.vim
+	url = git://github.com/kien/ctrlp.vim.git

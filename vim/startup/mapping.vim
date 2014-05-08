@@ -34,3 +34,6 @@ nmap <C-n> :bn<cr>
 
 "Toggle spell checking
 nmap <silent> <leader>s :set spell!<cr>
+
+"CtrlP
+nmap <leader>t :CtrlP<cr>
