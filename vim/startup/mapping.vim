@@ -37,3 +37,20 @@ nmap <silent> <leader>s :set spell!<cr>
 
 "CtrlP
 nmap <leader>t :CtrlP<cr>
+
+"Map <C-space> to omnicompletion
+function! Auto_complete_string()
+    if pumvisible() || &omnifunc == ''
+        return "\<C-n>"
+    else
+        return "\<C-x>\<C-o>\<C-r>=Auto_complete_opened()\<CR>"
+    end
+endfunction
+function! Auto_complete_opened()
+    if pumvisible() || &omnifunc == ''
+        return "\<Down>"
+    end
+    return ""
+endfunction
+inoremap <expr> <Nul> Auto_complete_string()
+inoremap <expr> <C-Space> Auto_complete_string()
