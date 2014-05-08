@@ -54,3 +54,9 @@ function! Auto_complete_opened()
 endfunction
 inoremap <expr> <Nul> Auto_complete_string()
 inoremap <expr> <C-Space> Auto_complete_string()
+
+"Toggle location list
+nnoremap <script> <silent> <C-e> :call ToggleLocationList()<CR>
+
+"Close the location list when selecting an item
+autocmd FileType qf nmap <buffer> <cr> <cr>:lcl<cr>

@@ -36,3 +36,6 @@ set list
 
 "Syntastic
 let g:syntastic_java_javac_config_file_enabled=1
+
+"vim-togglelist
+let g:toggle_list_no_mappings=1
