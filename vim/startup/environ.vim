@@ -42,3 +42,12 @@ let g:toggle_list_no_mappings=1
 
 "mark occurrences
 autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+
+"CtrlP
+let g:ctrlp_by_filename=1 "By default, match only filename, not path (Ctrl-D to toggle)
+let g:ctrlp_match_window='top,order:ttb'
+let g:ctrlp_switch_buffer='et' "Don't open new windows if the buffer is already active
+let g:ctrlp_working_path_mode='ra' "Use git repository as the working directory
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
+set wildignore+=*/bin/*.class
+let g:ctrlp_open_new_file='v' "Open new files in vertical splits
