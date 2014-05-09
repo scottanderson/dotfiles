@@ -39,3 +39,6 @@ let g:syntastic_java_javac_config_file_enabled=1
 
 "vim-togglelist
 let g:toggle_list_no_mappings=1
+
+"mark occurrences
+autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
