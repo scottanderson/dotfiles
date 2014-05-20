@@ -9,7 +9,7 @@ function promptCommand() {
     echo -n ${HOSTNAME} | sed -e 's/ud4bed98a954c5314f099/scoander-dp/' \
                               -e 's/u5cf9dd78212b5347288a/igor-sea/' \
                               -e 's/3c07547b91d8/shakezula/' \
-                              -E 's/\.ant\.amazon\.com//'
+                              -e 's/\.ant\.amazon\.com//'
     echo -ne "\007"
 }
 export PROMPT_COMMAND='promptCommand'
