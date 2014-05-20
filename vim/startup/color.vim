@@ -6,6 +6,12 @@ let g:Powerline_symbols='fancy'
 colo skittles_berry
 set cursorline
 
+"vim-indent-guides
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#262626 ctermbg=235
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#303030 ctermbg=236
+autocmd BufNewFile,BufRead * IndentGuidesEnable
+
 set hlsearch
 syntax on
 
