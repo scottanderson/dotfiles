@@ -15,6 +15,9 @@ set shiftwidth=4 "auto-indent amount
 set expandtab
 set tabstop=4
 
+"Some senseless stuff
+set modeline
+
 "Move the help split to the right
 autocmd FileType help wincmd L
 
@@ -23,7 +26,6 @@ if &term == "screen" || &term == "screen-256color"
   set t_ts=k
   set t_fs=\
 endif
-set title
 set ruler
 
 "Make it more obvious which buffers are active
