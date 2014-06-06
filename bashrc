@@ -8,6 +8,7 @@ function promptCommand() {
     echo -n $USER@
     echo -n ${HOSTNAME} | sed -e 's/ud4bed98a954c5314f099/scoander-dp/' \
                               -e 's/u5cf9dd78212b5347288a/igor-sea/' \
+                              -e 's/ud4bed98a91a8539b5fe6/igor2/' \
                               -e 's/3c07547b91d8/shakezula/' \
                               -e 's/\.ant\.amazon\.com//'
     echo -ne "\007"

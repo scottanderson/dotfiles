@@ -11,12 +11,14 @@ set formatoptions-=t "prevent auto word wrapping
 
 set cindent
 set shiftwidth=4 "auto-indent amount
-
 set expandtab
 set tabstop=4
 
 "Some senseless stuff
 set modeline
+
+let g:indent_guides_start_level=2
+let g:indent_guides_guide_size=1
 
 "Move the help split to the right
 autocmd FileType help wincmd L
@@ -43,7 +45,7 @@ let g:syntastic_java_javac_config_file_enabled=1
 let g:toggle_list_no_mappings=1
 
 "mark occurrences
-autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+autocmd CursorMoved * exe printf('match Search /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
 "CtrlP
 let g:ctrlp_by_filename=1 "By default, match only filename, not path (Ctrl-D to toggle)
