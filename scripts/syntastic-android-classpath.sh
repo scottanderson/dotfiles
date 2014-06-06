@@ -23,6 +23,16 @@ if [ -z "$BASE_PATH" ]; then
     exit
 fi
 
-sed '/\\$/ {:a; N; s/\\\n[\w]*/ /; t a}' $(find . -name Android.mk) | grep 'LOCAL_\(STATIC_\)\?JAVA_LIBRARIES' | cut -d= -f2 | tr ' ' '\n' | sed '/^$/d' | sort -u | while read line; do
+LIBRARIES=$(sed '/\\$/ {:a; N; s/\\\n[\w]*/ /; t a}' $(find . -name Android.mk) | grep 'LOCAL_\(STATIC_\)\?JAVA_LIBRARIES' | cut -d= -f2 | sed -e 's/^ *//' -e 's/ *$//' -e 's/ \+/ /g')
+LIBRARIES="core core-junit ext framework $LIBRARIES"
+LIBRARIES=$(echo $LIBRARIES | tr ' ' '\n' | sort -u)
+
+for line in $LIBRARIES; do
     echo $BASE_PATH/out/target/common/obj/JAVA_LIBRARIES/${line}_intermediates/classes.jar
 done
+
+# Resources
+echo $BASE_PATH/out/target/common/R
+
+# Locally available source files
+#find . -type d -name java -o -name src
