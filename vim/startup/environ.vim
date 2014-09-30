@@ -45,7 +45,27 @@ let g:syntastic_java_javac_config_file_enabled=1
 let g:toggle_list_no_mappings=1
 
 "mark occurrences
-autocmd CursorMoved * exe printf('match Search /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+hi GreenBackground  term=reverse ctermbg=22 guibg=#455354
+au CursorHold * exe printf('match MarkOccurence /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+nnoremap z/ :if !AutoHighlightToggle()<Bar>match none<Bar>endif<CR>
+function! AutoHighlightToggle()
+  if s:hilightmark >= 1
+    hi link MarkOccurence NONE
+    setl updatetime=4000
+    echo 'Highlight current word: off'
+    let s:hilightmark = 0
+  else
+    hi link MarkOccurence GreenBackground
+    setl updatetime=500
+    if s:hilightmark == 0
+      echo 'Highlight current word: ON'
+    endif
+    let s:hilightmark = 1
+  endif
+endfunction
+"let s:hilightmark = -1
+"call AutoHighlightToggle()
+let s:hilightmark = 0
 
 "CtrlP
 let g:ctrlp_by_filename=1 "By default, match only filename, not path (Ctrl-D to toggle)
