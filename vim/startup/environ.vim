@@ -46,7 +46,6 @@ let g:toggle_list_no_mappings=1
 
 "mark occurrences
 hi GreenBackground  term=reverse ctermbg=22 guibg=#455354
-au CursorHold * exe printf('match MarkOccurence /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 nnoremap z/ :if !AutoHighlightToggle()<Bar>match none<Bar>endif<CR>
 function! AutoHighlightToggle()
   if s:hilightmark >= 1
@@ -55,6 +54,7 @@ function! AutoHighlightToggle()
     echo 'Highlight current word: off'
     let s:hilightmark = 0
   else
+    au CursorHold * exe printf('match MarkOccurence /\V\<%s\>/', escape(expand('<cword>'), '/\'))
     hi link MarkOccurence GreenBackground
     setl updatetime=500
     if s:hilightmark == 0
