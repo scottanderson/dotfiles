@@ -1,3 +1,4 @@
+au BufNewFile,BufRead *.gradle set filetype=groovy
 au BufRead,BufNewFile *.rc set filetype=sh
 
 highlight OverLength ctermbg=magenta guibg=#592929
