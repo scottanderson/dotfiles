@@ -8,5 +8,7 @@
 	tool = meld
 [url "https://android.googlesource.com/"]
 	insteadof = git://android.git.kernel.org/
+[url "https://gerrit-review.googlesource.com/"]
+	pushinsteadof = https://gerrit.googlesource.com/
 [url "ssh://git@github.com/scottanderson/"]
 	pushinsteadof = git://github.com/scottanderson/
