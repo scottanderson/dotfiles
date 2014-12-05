@@ -19,3 +19,27 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
     alias vim='mvim -v'
     alias vi='mvim -v'
 fi
+
+# Erase duplicate commands in history
+export HISTCONTROL="erasedups:ignoreboth"
+
+# Ignore commands prefixed by space
+export HISTCONTROL="${HISTCONTROL}:ignorespace"
+
+# Make the history file much bigger
+export HISTFILESIZE=500000
+export HISTSIZE=100000
+
+# No need to remember the exit command
+export HISTIGNORE="&:[ ]*:exit"
+
+# Prevent bash overwriting history on exit
+shopt -s histappend
+
+# Save multi-line commands to the history as one command
+shopt -s cmdhist
+
+# OS X (if you're not using vi mode), you'll want to reset <CTRL>-S from being scroll stop. This prevents bash from being able to interpret it as forward search.
+if [[ "$(uname -s)" == "Darwin" ]]; then
+    stty stop ""
+fi
