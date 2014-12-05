@@ -1,19 +1,23 @@
 #!/bin/bash
 # This file isn't installed by setup.sh because it's a stub. I've currently got too many things that
 # are machine specific. When I get around to cleaning that up, I will add it to setup.sh.
+
+if [ -f ~/.bashrc-local ]; then
+    source ~/.bashrc-local
+fi
+
+export CLICOLOR=1
 export EDITOR=vim
-export PROMPT_COMMAND='echo -ne "\033]0;${PWD/$HOME/~}\007"'
+
 function promptCommand() {
-    echo -ne "\033]0;"
     echo -n $USER@
     echo -n ${HOSTNAME} | sed -e 's/ud4bed98a954c5314f099/scoander-dp/' \
                               -e 's/u5cf9dd78212b5347288a/igor-sea/' \
                               -e 's/ud4bed98a91a8539b5fe6/igor2/' \
                               -e 's/3c07547b91d8/shakezula/' \
                               -e 's/\.ant\.amazon\.com//'
-    echo -ne "\007"
 }
-export PROMPT_COMMAND='promptCommand'
+export PROMPT_COMMAND='echo -ne "\033]0;$(promptCommand)\007"'
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
     alias vim='mvim -v'
