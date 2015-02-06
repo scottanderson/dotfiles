@@ -6,6 +6,8 @@ if [ -f ~/.bashrc-local ]; then
     source ~/.bashrc-local
 fi
 
+export PATH=~/bin:$PATH
+
 if [ "$PS1" = '${debian_chroot:+($debian_chroot)}\u@\h:\w\$ ' ] || \
    [ "$PS1" = '\h:\W \u\$ ' ]; then
     # Primitive git_ps1
