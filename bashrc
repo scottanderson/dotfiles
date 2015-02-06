@@ -6,11 +6,22 @@ if [ -f ~/.bashrc-local ]; then
     source ~/.bashrc-local
 fi
 
+if [ "$PS1" = '${debian_chroot:+($debian_chroot)}\u@\h:\w\$ ' ] || \
+   [ "$PS1" = '\h:\W \u\$ ' ]; then
+    # Primitive git_ps1
+    export PS1="\[\033[01;32m\]\u@\h \[\033[01;34m\]\w \[\033[31m\]\$(__git_ps1 %s\ )\[\033[35m\]$\[\033[00m\] "
+
+fi
+
 export CLICOLOR=1
 export EDITOR=vim
 
 function promptCommand() {
     echo -n $USER@
+    promptHost
+}
+
+function promptHost() {
     echo -n ${HOSTNAME} | sed -e 's/ud4bed98a954c5314f099/scoander-dp/' \
                               -e 's/u5cf9dd78212b5347288a/igor-sea/' \
                               -e 's/ud4bed98a91a8539b5fe6/igor2/' \
@@ -18,6 +29,7 @@ function promptCommand() {
                               -e 's/\.ant\.amazon\.com//'
 }
 export PROMPT_COMMAND='echo -ne "\033]0;$(promptCommand)\007"'
+export PS1=$(echo "$PS1" | sed 's/\\h/$(promptHost)/')
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
     alias vim='mvim -v'
