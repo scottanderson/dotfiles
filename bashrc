@@ -2,11 +2,11 @@
 # This file isn't installed by setup.sh because it's a stub. I've currently got too many things that
 # are machine specific. When I get around to cleaning that up, I will add it to setup.sh.
 
+export PATH=~/bin:$PATH
+
 if [ -f ~/.bashrc-local ]; then
     source ~/.bashrc-local
 fi
-
-export PATH=~/bin:$PATH
 
 if [ "$PS1" = '${debian_chroot:+($debian_chroot)}\u@\h:\w\$ ' ] || \
    [ "$PS1" = '\h:\W \u\$ ' ]; then
