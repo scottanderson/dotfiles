@@ -4,9 +4,12 @@
 
 export PATH=~/bin:$PATH
 
-if [ -f ~/.bashrc-local ]; then
-    source ~/.bashrc-local
-fi
+for f in ~/bashrc-local \
+         /usr/local/etc/bash_completion.d/git-completion.bash \
+         /usr/local/etc/bash_completion.d/git-prompt.sh
+do
+    test -f $f && source $f
+done
 
 if [ "$PS1" = '${debian_chroot:+($debian_chroot)}\u@\h:\w\$ ' ] || \
    [ "$PS1" = '\h:\W \u\$ ' ]; then
@@ -34,8 +37,10 @@ export PROMPT_COMMAND='echo -ne "\033]0;$(promptCommand)\007"'
 export PS1=$(echo "$PS1" | sed 's/\\h/$(promptHost)/')
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
-    alias vim='mvim -v'
-    alias vi='mvim -v'
+    which mvim &> /dev/null || {
+        alias vim='mvim -v'
+        alias vi='mvim -v'
+    }
 fi
 
 # Erase duplicate commands in history
