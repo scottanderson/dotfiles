@@ -24,7 +24,7 @@ if [ -z "$BASE_PATH" ]; then
 fi
 
 LIBRARIES=$(sed '/\\$/ {:a; N; s/\\\n[\w]*/ /; t a}' $(find . -name Android.mk) | grep 'LOCAL_\(STATIC_\)\?JAVA_LIBRARIES' | cut -d= -f2 | sed -e 's/^ *//' -e 's/ *$//' -e 's/ \+/ /g')
-LIBRARIES="core core-junit ext framework $LIBRARIES"
+LIBRARIES="core core-junit core-libart ext framework $LIBRARIES"
 LIBRARIES=$(echo $LIBRARIES | tr ' ' '\n' | sort -u)
 
 for line in $LIBRARIES; do
