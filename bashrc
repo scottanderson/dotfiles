@@ -38,7 +38,12 @@ export PROMPT_COMMAND='echo -ne "\033]0;$(promptCommand)\007"'
 export PS1=$(echo "$PS1" | sed 's/\\h/$(promptHost)/')
 
 # Set the screen title to the hostname once on login
-echo -ne "\033k$(promptHost)\033\\"
+case "$TERM" in
+screen) ;&
+screen-256color)
+    echo -ne "\033k$(promptHost)\033\\"
+    ;;
+esac
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
     which mvim &> /dev/null || {
