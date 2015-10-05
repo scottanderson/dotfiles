@@ -16,7 +16,6 @@ if [ "$PS1" = '${debian_chroot:+($debian_chroot)}\u@\h:\w\$ ' ] || \
    [ "$PS1" = '\h:\W \u\$ ' ]; then
     # Primitive git_ps1
     export PS1="\[\033[01;32m\]\u@\h \[\033[01;34m\]\w \[\033[31m\]\$(__git_ps1 %s\ )\[\033[35m\]$\[\033[00m\] "
-
 fi
 
 export CLICOLOR=1
@@ -28,11 +27,11 @@ function setTitle() {
         # Screen window title
         printf '\ek%s\e\\' "$1"
         # Terminal window title
-        echo -ne "\033]0;$2\007"
+        printf '\e]0;%s\007' "$2"
         ;;
     xterm*)
         # Terminal window title
-        echo -ne "\033]0;$1\007"
+        printf '\e]0;%s\007' "$1"
         ;;
     esac
 }
