@@ -22,9 +22,33 @@ fi
 export CLICOLOR=1
 export EDITOR=vim
 
+function setTitle() {
+    case "$TERM" in
+    screen*)
+        # Screen window title
+        printf '\ek%s\e\\' "$1"
+        # Terminal window title
+        echo -ne "\033]0;$2\007"
+        ;;
+    xterm*)
+        # Terminal window title
+        echo -ne "\033]0;$1\007"
+        ;;
+    esac
+}
+
 function promptCommand() {
-    echo -n $USER@
-    promptHost
+    local PRIMARY
+    if [ -n "$(git rev-parse --show-toplevel 2>/dev/null)" ]; then
+        PRIMARY=$(basename $(git rev-parse --show-toplevel))
+    elif [ "$(git rev-parse --is-bare-repository)" = true ]; then
+        PRIMARY='BARE!'
+    elif [ -n "$(git rev-parse --git-dir 2>/dev/null)" ]; then
+        PRIMARY='GIT_DIR!'
+    else
+        PRIMARY=$(promptHost)
+    fi
+    setTitle "$PRIMARY" "$USER@$(promptHost)"
 }
 
 function promptHost() {
@@ -34,7 +58,7 @@ function promptHost() {
                               -e 's/60f81db91c86/shakezula/' \
                               -e 's/\.ant\.amazon\.com//'
 }
-export PROMPT_COMMAND='echo -ne "\033]0;$(promptCommand)\007"'
+export PROMPT_COMMAND='promptCommand'
 export PS1=$(echo "$PS1" | sed 's/\\h/$(promptHost)/')
 
 # Set the screen title to the hostname once on login
