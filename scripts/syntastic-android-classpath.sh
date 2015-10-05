@@ -35,4 +35,4 @@ done
 echo $BASE_PATH/out/target/common/R
 
 # Locally available source files
-#find . -type d -name java -o -name src
+timeout 2s find . -type d -name java -o -name src
