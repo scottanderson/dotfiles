@@ -12,10 +12,52 @@ do
     test -f $f && source $f
 done
 
+function __git_prompt() {
+    if [ -n "$(git rev-parse --git-dir 2>/dev/null)" ]; then
+        local gs_wd=$(git diff --no-ext-diff --quiet --exit-code; echo $?);
+        local gs_i=$(git diff-index --cached --quiet HEAD --; echo $?);
+        if [ $gs_wd = 0 ]; then
+            if [ $gs_i = 0 ]; then
+                local gs_untracked=$(! git ls-files --others --exclude-standard --error-unmatch -- '*' > /dev/null 2> /dev/null; echo $?);
+                if [ $gs_untracked = 0 ]; then
+                    local color="\033[01;31m"; #red
+                else
+                    local color="\033[35m";
+                fi;
+            else
+                local color="\033[01;33m"; # yellow
+            fi;
+        else
+            if [ $gs_i = 0 ]; then
+                local color="\033[01;32m"; # green
+            else
+                if [ "$(uname -s)" = "Darwin" ]; then
+                    local color="\033[33;41m";
+                else
+                    local color="\033[33;45m";
+                fi;
+            fi;
+        fi;
+        color="$2${color}$3";
+        __git_ps1 " "$color"%s";
+        return;
+    fi
+}
+
 if [ "$PS1" = '${debian_chroot:+($debian_chroot)}\u@\h:\w\$ ' ] || \
    [ "$PS1" = '\h:\W \u\$ ' ]; then
-    # Primitive git_ps1
-    export PS1="\[\033[01;32m\]\u@\h \[\033[01;34m\]\w \[\033[31m\]\$(__git_ps1 %s\ )\[\033[35m\]$\[\033[00m\] "
+    COLOR_RED="\033[01;31m"
+    COLOR_GREEN="\033[01;32m"
+    COLOR_YELLOW="\033[01;33m"
+    COLOR_BLUE="\033[01;34m"
+    COLOR_NONE="\033[00m"
+
+    PS1='${debian_chroot:+($debian_chroot)}'
+    PS1=$PS1"\[${COLOR_GREEN}\]\\u@\$(promptHost)"
+    PS1=$PS1"\[${COLOR_NONE}\]:"
+    PS1=$PS1"\[${COLOR_BLUE}\]\\w"
+    PS1=$PS1"\$(__git_prompt ' "\[${COLOR_RED}\]"%s' \[ \])"
+    PS1=$PS1"\[${COLOR_NONE}\]\\$ "
 fi
 
 export CLICOLOR=1
