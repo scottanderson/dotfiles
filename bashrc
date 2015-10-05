@@ -37,18 +37,28 @@ function setTitle() {
     esac
 }
 
+# http://stackoverflow.com/a/5687619
+function shortPath() {
+    echo -n "${PWD/#$HOME/~}" | awk -F / '{
+        if (length($0) > 14) { if (NF>4) print $1 "/" $2 "/.../" $(NF-1) "/" $NF;
+                               else if (NF>3) print $1 "/" $2 "/.../" $NF;
+                               else print $1 "/.../" $NF; }
+        else print $0; }'
+}
+
 function promptCommand() {
     local PRIMARY
     if [ -n "$(git rev-parse --show-toplevel 2>/dev/null)" ]; then
         PRIMARY=$(basename $(git rev-parse --show-toplevel))
-    elif [ "$(git rev-parse --is-bare-repository)" = true ]; then
-        PRIMARY='BARE!'
-    elif [ -n "$(git rev-parse --git-dir 2>/dev/null)" ]; then
-        PRIMARY='GIT_DIR!'
     else
-        PRIMARY=$(promptHost)
+        PRIMARY=$(shortPath)
     fi
-    setTitle "$PRIMARY" "$USER@$(promptHost)"
+    local SECONDARY="$USER@$(promptHost) - $PRIMARY"
+    if [ "$USER" = root ]; then
+        PRIMARY='[!] '"$PRIMARY"
+        SECONDARY='[!] '"$SECONDARY"
+    fi
+    setTitle "$PRIMARY" "$SECONDARY"
 }
 
 function promptHost() {
