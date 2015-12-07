@@ -1,7 +1,8 @@
 altscreen on
 autodetach on
-defscrollback 10000
-hardstatus alwayslastline "%{-b gk}%-w%{+b kg}%50>%n %t%{-b gk}%+w %=%C%<"
+#bind ! source $HOME/.screenrc
+defscrollback 30000
+hardstatus alwayslastline "%{-b gk}%-w%{+b kg}%50>%n %t%{-b gk}%+w %=[ %{w}%l %{g}][ %{w}%D %M %d %C%A %{g}]%<"
 startup_message off
 term "screen-256color"
 vbell off
