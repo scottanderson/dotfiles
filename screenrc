@@ -1,4 +1,5 @@
 altscreen on
+attrcolor b ".I" # Allow bold
 autodetach on
 #bind ! source $HOME/.screenrc
 defscrollback 30000
