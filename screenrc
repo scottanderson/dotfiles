@@ -1,7 +1,10 @@
 altscreen on
 attrcolor b ".I" # Allow bold
 autodetach on
-#bind ! source $HOME/.screenrc
+bind ! source $HOME/.screenrc
+bind j focus down
+bind k focus up
+caption splitonly "%?%F%{gk}%:%{rw}%?[%n %t]"
 defscrollback 30000
 hardstatus alwayslastline "%{-b gk}%-w%{+b kg}%50>%n %t%{-b gk}%+w %=[ %{w}%l %{g}][ %{w}%D %M %d %C%A %{g}]%<"
 startup_message off
