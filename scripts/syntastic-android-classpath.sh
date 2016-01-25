@@ -25,7 +25,7 @@ fi
 
 LIBRARIES=$(sed '/\\$/ {:a; N; s/\\\n[\w]*/ /; t a}' $(find . -name Android.mk) | grep 'LOCAL_\(STATIC_\)\?JAVA_LIBRARIES' | cut -d= -f2 | sed -e 's/^ *//' -e 's/ *$//' -e 's/ \+/ /g')
 LIBRARIES="core core-junit core-libart ext framework $LIBRARIES"
-LIBRARIES=$(echo $LIBRARIES | tr ' ' '\n' | sort -u)
+LIBRARIES=$(echo $LIBRARIES | tr ' ' '\n' | sort -u | grep -v '^\\$')
 
 for line in $LIBRARIES; do
     echo $BASE_PATH/out/target/common/obj/JAVA_LIBRARIES/${line}_intermediates/classes.jar
