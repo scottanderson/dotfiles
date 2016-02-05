@@ -20,6 +20,9 @@ set modeline
 let g:indent_guides_start_level=2
 let g:indent_guides_guide_size=1
 
+"Powerline
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+
 "Move the help split to the right
 autocmd FileType help wincmd L
 
