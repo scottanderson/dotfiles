@@ -2,6 +2,9 @@ call pathogen#infect()
 filetype plugin indent on
 syntax on
 
+"There are unicode characters in the startup files
+"set encoding=utf-8
+
 source ~/.vim/startup/color.vim
 source ~/.vim/startup/environ.vim
 source ~/.vim/startup/format.vim

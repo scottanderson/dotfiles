@@ -127,6 +127,9 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
     }
 fi
 
+# Merica
+LANG=en_US.UTF-8
+
 # Erase duplicate commands in history
 export HISTCONTROL="erasedups:ignoreboth"
 
