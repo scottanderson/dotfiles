@@ -4,7 +4,7 @@
 
 export PATH=~/bin:$PATH
 
-for f in ~/bashrc-local \
+for f in ~/.bashrc-local \
          /etc/bash_completion.d/git-prompt \
          /usr/local/etc/bash_completion.d/git-completion.bash \
          /usr/local/etc/bash_completion.d/git-prompt.sh
