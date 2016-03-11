@@ -1,5 +1,21 @@
 #!/bin/bash
 
+getproj () {
+    # This funciton is based on cproj()
+    local TOPFILE=build/core/envsetup.mk
+    local HERE=$PWD
+    local T=
+    while [ \( ! \( -f $TOPFILE \) \) -a \( $PWD != "/" \) ]; do
+        T=$PWD
+        if [ -f "$T/Android.mk" ]; then
+            echo $T
+            return
+        fi
+        cd .. > /dev/null
+    done
+    return 1
+}
+
 getbasepath () {
     # This function is based on gettop()
     local TOPFILE=build/core/envsetup.mk;
@@ -19,11 +35,12 @@ getbasepath () {
 }
 
 BASE_PATH=$(getbasepath)
-if [ -z "$BASE_PATH" ]; then
+PROJECT_PATH=$(cd $(dirname $1) > /dev/null; getproj)
+if [ -z "$BASE_PATH" -o -z "$PROJECT_PATH" ]; then
     exit
 fi
 
-LIBRARIES=$(sed '/\\$/ {:a; N; s/\\\n[\w]*/ /; t a}' $(find . -name Android.mk) | grep 'LOCAL_\(STATIC_\)\?JAVA_LIBRARIES' | cut -d= -f2 | sed -e 's/^ *//' -e 's/ *$//' -e 's/ \+/ /g')
+LIBRARIES=$(sed '/\\$/ {:a; N; s/\\\n[\w]*/ /; t a}' $(timeout 2s find $PROJECT_PATH -name Android.mk) | grep 'LOCAL_\(STATIC_\)\?JAVA_LIBRARIES' | cut -d= -f2 | sed -e 's/^ *//' -e 's/ *$//' -e 's/ \+/ /g')
 LIBRARIES="core core-junit core-libart ext framework $LIBRARIES"
 LIBRARIES=$(echo $LIBRARIES | tr ' ' '\n' | sort -u | grep -v '^\\$')
 
@@ -35,4 +52,4 @@ done
 echo $BASE_PATH/out/target/common/R
 
 # Locally available source files
-timeout 2s find . -type d -name java -o -name src
+timeout 2s find $PROJECT_PATH -type d -name java -o -name src
