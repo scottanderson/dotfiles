@@ -149,7 +149,24 @@ shopt -s histappend
 # Save multi-line commands to the history as one command
 shopt -s cmdhist
 
-# OS X (if you're not using vi mode), you'll want to reset <CTRL>-S from being scroll stop. This prevents bash from being able to interpret it as forward search.
+# Reduce the chance that multiple bash sessions will conflict when writing history by writing it
+# after each command.
+_bash_history_sync() {
+    builtin history -a
+    HISTFILESIZE=$HISTSIZE
+    builtin history -c
+    builtin history -r
+}
+
+history() {
+    _bash_history_sync
+    builtin history "$@"
+}
+
+PROMPT_COMMAND="_bash_history_sync;$PROMPT_COMMAND"
+
+# OS X (if you're not using vi mode), you'll want to reset <CTRL>-S from being scroll stop. This
+# prevents bash from being able to interpret it as forward search.
 if [[ "$(uname -s)" == "Darwin" ]]; then
     stty stop ""
 fi
