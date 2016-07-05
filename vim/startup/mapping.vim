@@ -1,3 +1,7 @@
+"Case insensitve searches
+nnoremap / /\c
+nnoremap ? ?\c
+
 "Disable the arrow keys in normal, insert, and visual mode, to force learning hjkl
 no <Left>  <Nop>
 no <Right> <Nop>
