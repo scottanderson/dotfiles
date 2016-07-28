@@ -4,6 +4,7 @@ syntax on
 
 "There are unicode characters in the startup files
 "set encoding=utf-8
+set tabpagemax=100
 
 source ~/.vim/startup/color.vim
 source ~/.vim/startup/environ.vim

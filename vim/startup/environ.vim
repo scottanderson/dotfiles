@@ -4,7 +4,9 @@ set showcmd "show normal mode commands in the status bar
 set splitright "create splits vertically to the right
 set splitbelow
 
-set scrolloff=999 "Center the screen when changing lines
+if !has("gui_macvim")
+  set scrolloff=999 "Center the screen when changing lines
+endif
 
 set textwidth=100
 set formatoptions-=t "prevent auto word wrapping
