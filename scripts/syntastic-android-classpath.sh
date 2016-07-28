@@ -1,5 +1,9 @@
 #!/bin/bash
 
+function timeout() {
+    perl -e 'alarm shift; exec @ARGV' "$@"
+}
+
 getproj () {
     # This funciton is based on cproj()
     local TOPFILE=build/core/envsetup.mk
@@ -34,13 +38,22 @@ getbasepath () {
     fi
 }
 
+collapseLineContinuation () {
+    sed ': again
+    /\\$/ {
+        N
+        s/\\\n//
+        t again
+    }' "$@"
+}
+
 BASE_PATH=$(getbasepath)
 PROJECT_PATH=$(cd $(dirname $1) > /dev/null; getproj)
 if [ -z "$BASE_PATH" -o -z "$PROJECT_PATH" ]; then
     exit
 fi
 
-LIBRARIES=$(sed '/\\$/ {:a; N; s/\\\n[\w]*/ /; t a}' $(timeout 2s find $PROJECT_PATH -name Android.mk) | grep 'LOCAL_\(STATIC_\)\?JAVA_LIBRARIES' | cut -d= -f2 | sed -e 's/^ *//' -e 's/ *$//' -e 's/ \+/ /g')
+LIBRARIES=$(collapseLineContinuation $(timeout 2s find $PROJECT_PATH -name Android.mk) | grep 'LOCAL_\(STATIC_\)\?JAVA_LIBRARIES' | cut -d= -f2 | sed -e 's/^ *//' -e 's/ *$//' -e 's/ \+/ /g')
 LIBRARIES="core core-junit core-libart ext framework $LIBRARIES"
 LIBRARIES=$(echo $LIBRARIES | tr ' ' '\n' | sort -u | grep -v '^\\$')
 
