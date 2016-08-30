@@ -45,7 +45,8 @@ function __git_prompt() {
 }
 
 if [ "$PS1" = '${debian_chroot:+($debian_chroot)}\u@\h:\w\$ ' ] || \
-   [ "$PS1" = '\h:\W \u\$ ' ]; then
+   [ "$PS1" = '\h:\W \u\$ ' ] || \
+   [ "$PS1" = '' ]; then
     COLOR_RED="\033[01;31m"
     COLOR_GREEN="\033[01;32m"
     COLOR_YELLOW="\033[01;33m"
@@ -59,6 +60,8 @@ if [ "$PS1" = '${debian_chroot:+($debian_chroot)}\u@\h:\w\$ ' ] || \
     PS1=$PS1"\$(__git_prompt ' "\[${COLOR_RED}\]"%s' \[ \])"
     PS1=$PS1"\[${COLOR_NONE}\]\\$ "
 fi
+
+PS1="\[\$(tput cup \"\$(tput lines)\")\]$PS1"
 
 export CLICOLOR=1
 export EDITOR=vim
