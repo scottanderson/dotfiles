@@ -34,3 +34,11 @@
 [submodule "vim/bundle/powerline"]
 	path = vim/bundle/powerline
 	url = https://github.com/powerline/powerline
+[submodule "vim/bundle/vim-ingo-library"]
+	path = vim/bundle/vim-ingo-library
+	url = https://github.com/inkarkat/vim-ingo-library
+	branch = stable
+[submodule "vim/bundle/vim-SyntaxRange"]
+	path = vim/bundle/vim-SyntaxRange
+	url = https://github.com/inkarkat/vim-SyntaxRange
+	branch = stable

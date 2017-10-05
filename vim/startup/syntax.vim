@@ -9,3 +9,6 @@ let g:syntastic_java_javac_custom_classpath_command = '~/dotfiles/scripts/syntas
 
 "pydiction
 let g:pydiction_location = '~/.vim/bundle/pydiction/complete-dict'
+
+"SyntaxRange
+autocmd Syntax * call SyntaxRange#Include('@begin=python@', '@end=python@', 'python', 'NonText')
