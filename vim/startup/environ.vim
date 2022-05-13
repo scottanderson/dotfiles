@@ -1,3 +1,6 @@
+"This file is encoded in UTF-8
+set encoding=utf-8
+
 "some sensible stuff
 set number "line numbering
 set showcmd "show normal mode commands in the status bar

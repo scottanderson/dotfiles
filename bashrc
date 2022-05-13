@@ -1,6 +1,4 @@
 #!/bin/bash
-# This file isn't installed by setup.sh because it's a stub. I've currently got too many things that
-# are machine specific. When I get around to cleaning that up, I will add it to setup.sh.
 
 export PATH=~/bin:$PATH
 
@@ -54,14 +52,14 @@ if [ "$PS1" = '${debian_chroot:+($debian_chroot)}\u@\h:\w\$ ' ] || \
     COLOR_NONE="\033[00m"
 
     PS1='${debian_chroot:+($debian_chroot)}'
-    PS1=$PS1"\[${COLOR_GREEN}\]\\u@\$(promptHost)"
+    PS1=$PS1"\[${COLOR_GREEN}\]\\u@\\h"
     PS1=$PS1"\[${COLOR_NONE}\]:"
     PS1=$PS1"\[${COLOR_BLUE}\]\\w"
     PS1=$PS1"\$(__git_prompt ' "\[${COLOR_RED}\]"%s' \[ \])"
     PS1=$PS1"\[${COLOR_NONE}\]\\$ "
 fi
 
-PS1="\[\$(tput cup \"\$(tput lines)\")\]$PS1"
+#PS1="\[\$(tput cup \"\$(tput lines)\")\]$PS1"
 
 export CLICOLOR=1
 export EDITOR=vim
@@ -97,7 +95,7 @@ function promptCommand() {
     else
         PRIMARY=$(shortPath)
     fi
-    local SECONDARY="$USER@$(promptHost) - $PRIMARY"
+    local SECONDARY="$USER@$HOSTNAME - $PRIMARY"
     if [ "$USER" = root ]; then
         PRIMARY='[!] '"$PRIMARY"
         SECONDARY='[!] '"$SECONDARY"
@@ -105,15 +103,7 @@ function promptCommand() {
     setTitle "$PRIMARY" "$SECONDARY"
 }
 
-function promptHost() {
-    echo -n ${HOSTNAME} | sed -e 's/ud4bed98a954c5314f099/scoander-dp/' \
-                              -e 's/u5cf9dd78212b5347288a/igor-sea/' \
-                              -e 's/ud4bed98a91a8539b5fe6/igor2/' \
-                              -e 's/a0cec80dac03/shakezula/' \
-                              -e 's/\.ant\.amazon\.com//'
-}
 export PROMPT_COMMAND='promptCommand'
-export PS1=$(echo "$PS1" | sed 's/\\h/$(promptHost)/')
 
 # Set the screen title to the hostname once on login
 case "$TERM" in

@@ -4,7 +4,7 @@ git config --global alias.l "log --graph --abbrev-commit --decorate --date=relat
 git config --global core.excludesfile '~/.cvsignore'
 git config --global url.ssh://git@github.com/.pushinsteadof git://github.com/
 git config --global url.ssh://git@github.com/.pushinsteadof https://github.com/
-for f in cvsignore screenrc vim vimrc; do
+for f in bashrc cvsignore screenrc vim vimrc; do
     source="$HOME/.$f"
     target="dotfiles/$f"
     if [ -e $source ]; then
