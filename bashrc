@@ -109,7 +109,7 @@ export PROMPT_COMMAND='promptCommand'
 case "$TERM" in
 screen) ;&
 screen-256color)
-    echo -ne "\033k$(promptHost)\033\\"
+    echo -ne "\033k${HOSTNAME}\033\\"
     ;;
 esac
 
