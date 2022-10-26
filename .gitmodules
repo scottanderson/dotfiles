@@ -1,36 +1,36 @@
 [submodule "vim/bundle/skittles_berry"]
 	path = vim/bundle/skittles_berry
-	url = git://github.com/shawncplus/skittles_berry.git
+	url = https://github.com/shawncplus/skittles_berry.git
 [submodule "vim/bundle/vim-fugitive"]
 	path = vim/bundle/vim-fugitive
-	url = git://github.com/tpope/vim-fugitive.git
+	url = https://github.com/tpope/vim-fugitive.git
 [submodule "vim/bundle/syntactic"]
 	path = vim/bundle/syntactic
-	url = git://github.com/scrooloose/syntastic.git
+	url = https://github.com/scrooloose/syntastic.git
 [submodule "vim/bundle/indentpython.vim"]
 	path = vim/bundle/indentpython.vim
-	url = git://github.com/vim-scripts/indentpython.vim.git
+	url = https://github.com/vim-scripts/indentpython.vim.git
 [submodule "vim/bundle/pydiction"]
 	path = vim/bundle/pydiction
-	url = git://github.com/rkulla/pydiction.git
+	url = https://github.com/rkulla/pydiction.git
 [submodule "vim/bundle/vim-unimpared"]
 	path = vim/bundle/vim-unimpared
-	url = git://github.com/tpope/vim-unimpaired.git
+	url = https://github.com/tpope/vim-unimpaired.git
 [submodule "vim/bundle/ctrlp.vim"]
 	path = vim/bundle/ctrlp.vim
 	url = https://github.com/ctrlpvim/ctrlp.vim
 [submodule "vim/bundle/AutoComplPop"]
 	path = vim/bundle/AutoComplPop
-	url = git://github.com/vim-scripts/AutoComplPop.git
+	url = https://github.com/vim-scripts/AutoComplPop.git
 [submodule "vim/bundle/vim-togglelist"]
 	path = vim/bundle/vim-togglelist
-	url = git://github.com/milkypostman/vim-togglelist.git
+	url = https://github.com/milkypostman/vim-togglelist.git
 [submodule "vim/bundle/vim-indent-guides"]
 	path = vim/bundle/vim-indent-guides
-	url = git://github.com/nathanaelkane/vim-indent-guides.git
+	url = https://github.com/nathanaelkane/vim-indent-guides.git
 [submodule "vim/bundle/vim-sensible"]
 	path = vim/bundle/vim-sensible
-	url = git://github.com/tpope/vim-sensible.git
+	url = https://github.com/tpope/vim-sensible.git
 [submodule "vim/bundle/powerline"]
 	path = vim/bundle/powerline
 	url = https://github.com/powerline/powerline
