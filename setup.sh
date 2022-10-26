@@ -12,6 +12,7 @@ git config --global alias.lc '!f() {
     fi;
 }; f'
 git config --global core.excludesfile '~/.cvsignore'
+git config --global core.pager "less -FXRS"
 git config --global url.ssh://git@github.com/.pushinsteadof git://github.com/
 git config --global url.ssh://git@github.com/.pushinsteadof https://github.com/
 for f in bashrc cvsignore screenrc vim vimrc; do
