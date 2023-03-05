@@ -16,7 +16,7 @@ git config --global core.excludesfile "~/.cvsignore"
 git config --global core.pager "less -FXRS"
 git config --global url.ssh://git@github.com/.pushinsteadof git://github.com/
 git config --global url.ssh://git@github.com/.pushinsteadof https://github.com/
-for f in bashrc cvsignore screenrc vim vimrc; do
+for f in bashrc cvsignore tmux.conf screenrc vim vimrc; do
     source="$HOME/.$f"
     target="${DOTFILES}/$f"
     if [ -e $source ]; then
