@@ -1,5 +1,4 @@
 #!/bin/bash
-DOTFILES="$(realpath --relative-to="${HOME}" "$(dirname "${BASH_SOURCE[0]}")")"
 git submodule update --init
 git config --global alias.l "log --graph --abbrev-commit --decorate --date=relative --format='%C(auto)%h - %C(bold green)(%ar)%C(reset)%C(auto) %s - %C(bold)%an%C(reset)%C(auto)%d'"
 git config --global alias.lc '!f() {
@@ -16,7 +15,16 @@ git config --global core.excludesfile "~/.cvsignore"
 git config --global core.pager "less -FXRS"
 git config --global url.ssh://git@github.com/.pushinsteadof git://github.com/
 git config --global url.ssh://git@github.com/.pushinsteadof https://github.com/
-for f in bashrc cvsignore tmux.conf screenrc vim vimrc; do
+for f in \
+    bashrc \
+    config/nvim \
+    cvsignore \
+    screenrc \
+    tmux.conf \
+    vim \
+    vimrc \
+    ; do
+    DOTFILES="$(realpath --relative-to="$(dirname "${HOME}/.${f}")" "$(dirname "${BASH_SOURCE[0]}")")"
     source="$HOME/.$f"
     target="${DOTFILES}/$f"
     if [ -e $source ]; then
@@ -29,5 +37,5 @@ for f in bashrc cvsignore tmux.conf screenrc vim vimrc; do
     fi
     mkdir -p $(dirname $source)
     ln -sf $target $source
-    echo "$f installed"
+    echo "$f installed ($source -> target)"
 done
