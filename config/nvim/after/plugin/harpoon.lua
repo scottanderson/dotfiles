@@ -8,7 +8,7 @@ vim.keymap.set('n', '<leader>q', ui.toggle_quick_menu)
 local show_file_name_in_description = true
 
 local function update_harpoon_maps()
-    -- Mark (gH[a-z]) and recall (gh[a-z])
+    -- Mark (sh[a-z]) and recall (gh[a-z])
     local function update_harpoon_map(i, letter_i, nav_i, mark_i)
         local letter_u = string.upper(letter_i)
         if not show_file_name_in_description then

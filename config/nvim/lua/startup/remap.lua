@@ -33,15 +33,16 @@ map('i', '<C-l>', '<Right>')
 map('n', '<C-d>', '<C-d>zz')
 map('n', '<C-u>', '<C-u>zz')
 
--- Quick toggles inspired by tpope/vim-unimpaired
+
 local function option_map(letter, option, mode)
-    local lhs = 'co' .. letter
+    local lhs = 'yo' .. letter
     local rhs = string.format(':%s %s! %s?<CR>', mode, option, option)
     local options = silent
     map('n', lhs, rhs, options)
 end
+
 local function option_tgl(letter, option, active, inactive)
-    local lhs = 'co' .. letter
+    local lhs = 'yo' .. letter
     local rhs = function()
         if vim.o[option] == active then
             vim.o[option] = inactive
@@ -53,17 +54,20 @@ local function option_tgl(letter, option, active, inactive)
     local options = silent
     map('n', lhs, rhs, options)
 end
+
+-- Quick toggles inspired by tpope/vim-unimpaired
 option_map('c', 'cursorline', 'setlocal')
-option_map('u', 'cursorcolumn', 'setlocal')
-option_map('i', 'ignorecase', 'set')
 option_map('h', 'hlsearch', 'set')
+option_map('i', 'ignorecase', 'set')
 option_map('l', 'list', 'setlocal')
 option_map('n', 'number', 'setlocal')
+option_map('p', 'paste', 'setlocal')
 option_map('r', 'relativenumber', 'setlocal')
 option_map('s', 'spell', 'setlocal')
+option_map('u', 'cursorcolumn', 'setlocal')
 option_map('w', 'wrap', 'setlocal')
 option_tgl('f', 'signcolumn', 'number', 'no')
-map('n', 'cot', ':TSContextToggle<CR>', silent)
+map('n', 'yot', ':TSContextToggle<CR>', silent)
 map('n', ']b', ':bn<CR>', silent)
 map('n', '[b', ':bp<CR>', silent)
 
