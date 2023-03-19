@@ -13,3 +13,4 @@ vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.tabstop = 4
 vim.o.updatetime = 250
+vim.o.winbar = '%=%m %f'
