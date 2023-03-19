@@ -31,6 +31,7 @@ return require('packer').startup(function(use)
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use { 'nvim-treesitter/nvim-treesitter-context' }
     use { 'nvim-treesitter/playground' }
+    use { 'preservim/vim-indent-guides' }
     use { 'tomasiser/vim-code-dark' }
     use { 'tpope/vim-commentary' }
     use { 'tpope/vim-fugitive' }
