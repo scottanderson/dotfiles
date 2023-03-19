@@ -34,4 +34,5 @@ return require('packer').startup(function(use)
     use { 'tomasiser/vim-code-dark' }
     use { 'tpope/vim-commentary' }
     use { 'tpope/vim-fugitive' }
+    use { 'windwp/nvim-autopairs' }
 end)
