@@ -31,7 +31,13 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 cmp_mappings['<Tab>'] = nil
 cmp_mappings['<S-Tab>'] = nil
 lsp.setup_nvim_cmp({
-    mapping = cmp_mappings
+    mapping = cmp_mappings,
+    sources = cmp.config.sources {
+        { name = 'luasnip' },
+        { name = 'nvim_lsp' },
+        { name = 'path' },
+        { name = 'buffer', max_item_count = 5, keyword_length = 5 },
+    },
 })
 
 ---@diagnostic disable-next-line: unused-local
