@@ -12,5 +12,7 @@ vim.o.signcolumn = 'number'
 vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.tabstop = 4
+vim.o.undofile = true
+vim.o.undodir = vim.fn.expand('$HOME/.local/share/nvim-undo/')
 vim.o.updatetime = 250
 vim.o.winbar = '%=%m %f'
