@@ -11,28 +11,32 @@ local function update_harpoon_maps()
     -- Mark (sh[a-z]) and recall (gh[a-z])
     local function update_harpoon_map(i, letter_i, nav_i, mark_i)
         local letter_u = string.upper(letter_i)
+        local lhs_jump = '<A-' .. letter_i .. '>'
+        local lhs_mark = 'sh' .. letter_i
         if not show_file_name_in_description then
-            vim.keymap.set('n', 'gh' .. letter_i, nav_i, { desc = ('[G]o [H]arpoon [%s] (%02d)'):format(letter_u, i) })
-            vim.keymap.set('n', 'sh' .. letter_i, mark_i, { desc = ('[S]et [H]arpoon [%s] (%02d)'):format(letter_u, i) })
+            vim.keymap.set('n', lhs_jump, nav_i, { desc = ('[G]o [H]arpoon [%s] (%02d)'):format(letter_u, i) })
+            vim.keymap.set('n', lhs_mark, mark_i, { desc = ('[S]et [H]arpoon [%s] (%02d)'):format(letter_u, i) })
             return
         end
         local file_name = mark.get_marked_file_name(i)
         if file_name == nil or file_name == '(empty)' then
-            local set_desc = ('[S]et [H]arpoon [%s] (%02d)'):format(letter_u, i)
-            vim.keymap.set('n', 'gh' .. letter_i, nav_i)
-            vim.keymap.del('n', 'gh' .. letter_i)
-            vim.keymap.set('n', 'sh' .. letter_i, mark_i, { desc = set_desc })
+            local mark_desc = ('[S]et [H]arpoon [%s] (%02d)'):format(letter_u, i)
+            vim.keymap.set('n', lhs_jump, nav_i)
+            vim.keymap.set('n', lhs_mark, mark_i, { desc = mark_desc })
         else
-            local recall_desc = ('[G]o [H]arpoon [%s] (%02d %s)'):format(letter_u, i, file_name)
-            local set_desc = ('[S]et [H]arpoon [%s] (%02d %s)'):format(letter_u, i, file_name)
-            vim.keymap.set('n', 'gh' .. letter_i, nav_i, { desc = recall_desc })
-            vim.keymap.set('n', 'sh' .. letter_i, mark_i, { desc = set_desc })
+            local jump_desc = ('[G]o [H]arpoon [%s] (%02d %s)'):format(letter_u, i, file_name)
+            local mark_desc = ('[S]et [H]arpoon [%s] (%02d %s)'):format(letter_u, i, file_name)
+            vim.keymap.set('n', lhs_jump, nav_i, { desc = jump_desc })
+            vim.keymap.set('n', lhs_mark, mark_i, { desc = mark_desc })
         end
     end
-    local index = 1
-    while index <= 26 do
-        local i = index
+    for i = 1, 26, 1 do
         local nav_i = function()
+            local file_name = mark.get_marked_file_name(i)
+            if file_name == nil or file_name == '(empty)' then
+                print(('No mark set (%02d)'):format(i))
+                return
+            end
             ui.nav_file(i)
             print(('Harpoon %02d: %s'):format(i, mark.get_marked_file_name(i)))
         end
@@ -54,7 +58,6 @@ local function update_harpoon_maps()
             end
         end
         update_harpoon_map(i, letter_i, nav_i, mark_i)
-        index = index + 1
     end
 end
 
