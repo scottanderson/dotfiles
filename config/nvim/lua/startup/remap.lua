@@ -1,5 +1,6 @@
 vim.g.mapleader = '\\'
 
+local expr = { expr = true }
 local silent = { silent = true }
 local function map(mode, lhs, rhs, opts)
     local options = { noremap = true }
@@ -33,6 +34,13 @@ map('i', '<C-l>', '<Right>')
 map('n', '<C-d>', '<C-d>zz')
 map('n', '<C-u>', '<C-u>zz')
 
+-- Keep indent text selected
+map('v', '<', '<gv')
+map('v', '>', '>gv')
+
+-- Line wrap navigation
+map('n', 'k', "v:count == 0 ? 'gk' : 'k'", expr)
+map('n', 'j', "v:count == 0 ? 'gj' : 'j'", expr)
 
 local function option_map(letter, option, mode)
     local lhs = 'yo' .. letter
