@@ -81,4 +81,14 @@ end)
 -- Configure lua language server for neovim
 lsp.nvim_workspace()
 
+lsp.format_on_save({
+    format_opts = {
+        timeout_ms = 10000,
+    },
+    servers = {
+        ['lua_ls'] = { 'lua' },
+        ['rust_analyzer'] = { 'rust' },
+    }
+})
+
 lsp.setup()
