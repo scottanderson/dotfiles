@@ -20,6 +20,24 @@ lsp.configure('lua-language-server', {
     }
 })
 
+lsp.configure('rust_analyzer', {
+    settings = {
+        cmd = { "rustup", "run", "stable", "rust-analyzer" },
+        ['rust-analyzer'] = {
+            cargo = {
+                allFeatures = true,
+                allTargets = true,
+            },
+            check = {
+                command = 'clippy',
+                allFeatures = true,
+                allTargets = true,
+            },
+            diagnostics = { enable = false }
+        }
+    }
+})
+
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
