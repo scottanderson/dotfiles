@@ -44,6 +44,7 @@ function __git_prompt() {
 
 if [ "$PS1" = '${debian_chroot:+($debian_chroot)}\u@\h:\w\$ ' ] || \
    [ "$PS1" = '\h:\W \u\$ ' ] || \
+   [ "$PS1" = '\s-\v\$ ' ] || \
    [ "$PS1" = '' ]; then
     COLOR_RED="\033[01;31m"
     COLOR_GREEN="\033[01;32m"
@@ -62,7 +63,7 @@ fi
 #PS1="\[\$(tput cup \"\$(tput lines)\")\]$PS1"
 
 export CLICOLOR=1
-export EDITOR=vim
+export EDITOR=nvim
 
 function setTitle() {
     case "$TERM" in
@@ -107,18 +108,15 @@ export PROMPT_COMMAND='promptCommand'
 
 # Set the screen title to the hostname once on login
 case "$TERM" in
-screen) ;&
-screen-256color)
+screen | screen-256color)
     echo -ne "\033k${HOSTNAME}\033\\"
     ;;
 esac
 
-if [[ "$(uname -s)" == "Darwin" ]]; then
-    which mvim &> /dev/null || {
-        alias vim='mvim -v'
-        alias vi='mvim -v'
-    }
-fi
+which nvim &> /dev/null || {
+    alias vim='nvim -v'
+    alias vi='nvim -v'
+}
 
 # Merica
 LANG=en_US.UTF-8
