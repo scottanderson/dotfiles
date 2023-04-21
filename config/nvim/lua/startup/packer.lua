@@ -36,5 +36,13 @@ return require('packer').startup(function(use)
     use { 'tomasiser/vim-code-dark' }
     use { 'tpope/vim-commentary' }
     use { 'tpope/vim-fugitive' }
+    use {
+        'utilyre/barbecue.nvim',
+        tag = '*',
+        requires = { 'SmiteshP/nvim-navic' },
+        config = function()
+            require('barbecue').setup()
+        end,
+    }
     use { 'windwp/nvim-autopairs' }
 end)
