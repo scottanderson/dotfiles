@@ -1,4 +1,11 @@
 #!/bin/bash
+for CMD in realpath asdlfkj; do
+    hash $CMD 2>/dev/null || {
+        echo "I require $CMD but it is not installed. Aborting."
+        return 1
+        exit 1
+    }
+done
 git submodule update --init
 git config --global alias.l "log --graph --abbrev-commit --decorate --date=relative --format='%C(auto)%h - %C(bold green)(%ar)%C(reset)%C(auto) %s - %C(bold)%an%C(reset)%C(auto)%d'"
 git config --global alias.lc '!f() {
