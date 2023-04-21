@@ -19,7 +19,7 @@ local function update_harpoon_maps()
             return
         end
         local file_name = mark.get_marked_file_name(i)
-        if file_name == nil or file_name == '(empty)' then
+        if file_name == nil or file_name == '' or file_name == '(empty)' then
             local mark_desc = ('[S]et [H]arpoon [%s] (%02d)'):format(letter_u, i)
             vim.keymap.set('n', lhs_jump, nav_i)
             vim.keymap.set('n', lhs_mark, mark_i, { desc = mark_desc })
@@ -33,7 +33,7 @@ local function update_harpoon_maps()
     for i = 1, 26, 1 do
         local nav_i = function()
             local file_name = mark.get_marked_file_name(i)
-            if file_name == nil or file_name == '(empty)' then
+            if file_name == nil or file_name == '' or file_name == '(empty)' then
                 print(('No mark set (%02d)'):format(i))
                 return
             end
