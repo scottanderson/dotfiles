@@ -28,7 +28,7 @@ return require('packer').startup(function(use)
     use { 'folke/trouble.nvim', requires = 'nvim-tree/nvim-web-devicons' }
     use { 'mbbill/undotree' }
     use { 'nvim-lualine/lualine.nvim' }
-    use { 'nvim-telescope/telescope.nvim', tag = '0.1.1', requires = 'nvim-lua/plenary.nvim' }
+    use { 'nvim-telescope/telescope.nvim', tag = '0.1.5', requires = 'nvim-lua/plenary.nvim' }
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use { 'nvim-treesitter/nvim-treesitter-context' }
     use { 'nvim-treesitter/playground' }
