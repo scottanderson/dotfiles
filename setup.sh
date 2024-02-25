@@ -1,5 +1,5 @@
 #!/bin/bash
-for CMD in realpath asdlfkj; do
+for CMD in realpath; do
     hash $CMD 2>/dev/null || {
         echo "I require $CMD but it is not installed. Aborting."
         return 1
@@ -11,13 +11,17 @@ git config --global alias.l "log --graph --abbrev-commit --decorate --date=relat
 git config --global alias.lc '!f() {
     : git log
     if [ $# -eq 0 ]; then
-        f HEAD @{upstream};
+        f HEAD @{upstream} || f HEAD origin/HEAD;
     elif [ $# -eq 1 ]; then
         f HEAD $1;
     else
         git l "$@" ^$(git merge-base -a --octopus "$@")^@;
     fi;
 }; f'
+git config --global alias.la '!f() { git lc $(git rev-parse HEAD --all "$@"); }; f'
+git config --global alias.lb '!f() { git lc $(git rev-parse HEAD --branches="$@"); }; f'
+git config --global alias.lt '!f() { git lc $(git rev-parse HEAD --tags="$@"); }; f'
+git config --global alias.lr '!f() { git lc $(git rev-parse HEAD --remotes="$@"); }; f'
 git config --global core.excludesfile "~/.cvsignore"
 git config --global core.pager "less -FXRS"
 git config --global url.ssh://git@github.com/.pushinsteadof git://github.com/
