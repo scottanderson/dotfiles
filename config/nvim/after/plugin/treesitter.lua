@@ -25,3 +25,4 @@ require('treesitter-context').setup {
     trim_scope = 'inner', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
     mode = 'topline',     -- Line used to calculate context. Choices: 'cursor', 'topline'
 }
+vim.keymap.set('n', '<leader>c', '<Cmd>TSContextToggle<CR>', {})
