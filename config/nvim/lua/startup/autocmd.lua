@@ -12,3 +12,6 @@ vim.cmd [[  au BufWritePre  *.bin,*.sav endif]]
 vim.cmd [[  au BufWritePost *.bin,*.sav if &bin | %!xxd -g1]]
 vim.cmd [[  au BufWritePost *.bin,*.sav set nomod | endif]]
 vim.cmd [[augroup END]]
+
+-- Prompt when a file is already being edited.
+vim.cmd('autocmd! nvim.swapfile')
