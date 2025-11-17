@@ -1,7 +1,3 @@
-return {
-    'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    config = function()
 local colors = {
     red = 1,
     white = 231,
@@ -18,7 +14,6 @@ local function modified()
         result = result .. '[-]'
     end
     return result
-
 end
 
 local function paste()
@@ -29,7 +24,7 @@ local function paste()
     return 'PASTE'
 end
 
-require('lualine').setup {
+local opts = {
     options = {
         theme = 'powerline',
     },
@@ -59,5 +54,9 @@ require('lualine').setup {
         },
     },
 }
-    end,
+
+return {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    opts = opts,
 }
