@@ -1,3 +1,7 @@
+return {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
 local colors = {
     red = 1,
     white = 231,
@@ -54,4 +58,6 @@ require('lualine').setup {
             },
         },
     },
+}
+    end,
 }

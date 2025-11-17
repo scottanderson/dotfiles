@@ -1,3 +1,6 @@
+return {
+  "ThePrimeagen/harpoon",
+  config = function()
 local mark = require('harpoon.mark')
 local ui = require('harpoon.ui')
 vim.keymap.set('n', '<leader>a', mark.add_file)
@@ -67,3 +70,5 @@ if show_file_name_in_description then
     -- Update binding descriptions any time harpoon marks are modified
     mark.on('changed', update_harpoon_maps)
 end
+  end,
+}
