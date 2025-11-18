@@ -75,7 +75,7 @@ option_map('s', 'spell', 'setlocal')
 option_map('u', 'cursorcolumn', 'setlocal')
 option_map('w', 'wrap', 'setlocal')
 option_tgl('f', 'signcolumn', 'number', 'no')
-map('n', 'yot', ':TSContextToggle<CR>', silent)
+map('n', 'yot', ':TSContext toggle<CR>', silent)
 map('n', ']b', ':bn<CR>', silent)
 map('n', '[b', ':bp<CR>', silent)
 
