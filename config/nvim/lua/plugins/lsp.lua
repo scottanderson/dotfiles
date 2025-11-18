@@ -2,8 +2,19 @@ return {
     'neovim/nvim-lspconfig',
     dependencies = {
         -- LSP Support
-        { 'williamboman/mason.nvim' },
-        -- { 'williamboman/mason-lspconfig.nvim' },
+        { 'williamboman/mason.nvim', opts = {} },
+        {
+            'williamboman/mason-lspconfig.nvim',
+            opts = {
+                automatic_enable = false,
+                ensure_installed = {
+                    'eslint',
+                    'lua_ls',
+                    'rust_analyzer',
+                    'ts_ls',
+                },
+            }
+        },
         -- Autocompletion
         { 'hrsh7th/nvim-cmp' },
         { 'hrsh7th/cmp-buffer' },
@@ -16,19 +27,6 @@ return {
         { 'rafamadriz/friendly-snippets' },
     },
     config = function()
--- Mason setup
-require('mason').setup()
-
--- Mason LSP config
--- require('mason-lspconfig').setup({
---     ensure_installed = {
---         'eslint',
---         'lua_ls',
---         'rust_analyzer',
---         'ts_ls',
---     },
--- })
-
 -- common on_attach
 local on_attach = function(_, bufnr)
     local opts = { buffer = bufnr, remap = false }
@@ -130,28 +128,5 @@ cmp.setup({
         documentation = cmp.config.window.bordered(),
     },
 })
-
----- Configure null-ls
---local null_ls = require("null-ls")
---null_ls.setup({
---    sources = {
---        null_ls.builtins.formatting.stylua,
---        null_ls.builtins.completion.spell,
---        -- require("none-ls.diagnostics.eslint"), -- requires none-ls-extras.nvim
---    },
---})
-
---lsp.format_on_save({
---    format_opts = {
---        timeout_ms = 10000,
---    },
---    servers = {
---        ['lua_ls'] = { 'lua' },
---        ['rust_analyzer'] = { 'rust' },
---        ['null-ls'] = { 'markdown' },
---    }
---})
-
---lsp.setup()
     end
 }
