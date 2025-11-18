@@ -29,9 +29,6 @@ require('mason').setup()
 --     },
 -- })
 
--- LSP configuration
-local lspconfig = require('lspconfig')
-
 -- common on_attach
 local on_attach = function(_, bufnr)
     local opts = { buffer = bufnr, remap = false }
@@ -54,13 +51,20 @@ local on_attach = function(_, bufnr)
     vim.keymap.set('n', '[c', ':cp<cr>', opts)
     vim.keymap.set('n', '<leader>s', vim.lsp.buf.workspace_symbol, opts)
 end
+vim.api.nvim_create_autocmd('LspAttach', {
+    callback = function(args)
+        local bufnr = args.buf
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        on_attach(client, bufnr)
+    end,
+})
 
 -- Lua LS config
-lspconfig.lua_ls.setup {
-    on_attach = on_attach,
+vim.lsp.config('lua_ls', {
     settings = {
         Lua = {
             workspace = {
+                -- And nvim runtime to the lua_ls workspace
                 library = vim.api.nvim_get_runtime_file('', true),
             },
             diagnostics = {
@@ -68,11 +72,11 @@ lspconfig.lua_ls.setup {
             }
         }
     }
-}
+})
+vim.lsp.enable('lua_ls')
 
 -- Rust Analyzer config
-lspconfig.rust_analyzer.setup({
-    on_attach = on_attach,
+vim.lsp.config('rust_analyzer', {
     cmd = { "rustup", "run", "stable", "rust-analyzer" },
     settings = {
         ['rust-analyzer'] = {
@@ -89,12 +93,17 @@ lspconfig.rust_analyzer.setup({
         },
     },
 })
+vim.lsp.enable('rust_analyzer')
 
 -- TypeScript LS config
-lspconfig.ts_ls.setup({ on_attach = on_attach })
+vim.lsp.config('ts_ls', {
+})
+vim.lsp.enable('ts_ls')
 
 -- ESLint config
-lspconfig.eslint.setup({ on_attach = on_attach })
+vim.lsp.config('eslint', {
+})
+vim.lsp.enable('eslint')
 
 -- Completion
 local cmp = require('cmp')
@@ -121,9 +130,6 @@ cmp.setup({
         documentation = cmp.config.window.bordered(),
     },
 })
-
----- Configure lua language server for neovim
---lsp.nvim_workspace()
 
 ---- Configure null-ls
 --local null_ls = require("null-ls")
