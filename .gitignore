@@ -1,5 +1,6 @@
 *.swp
 *.swo
 config/nvim/.netrwhist
+config/nvim/lazy-lock.json
 config/nvim/plugin/packer_compiled.lua
 vim/spell/
