@@ -86,6 +86,4 @@ map('n', '}', ':<C-u>execute "keepjumps norm! " . v:count1 . "}"<CR>', silent)
 map('n', '<leader><leader>', ':so %<CR>')
 map('n', '<leader>.', '<Nop>')
 map('n', '<leader>e', ':Ex<CR>')
-
--- Copy to WSL host clipboard https://superuser.com/a/1763212
-map('v', '<C-c>', [[y:!echo <C-r>=escape(substitute(shellescape(getreg('"')), '\n', '\r', 'g'), '%!')<CR> <Bar> clip.exe<CR><CR>]])
+map('v', '<C-c>', [["+y]])
