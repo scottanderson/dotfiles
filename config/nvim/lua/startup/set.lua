@@ -14,4 +14,5 @@ vim.o.undodir = vim.fn.expand('$HOME/.local/share/nvim-undo/')
 vim.o.undofile = true
 vim.o.updatetime = 250
 vim.o.winbar = '%=%m %f'
+vim.o.winborder = 'rounded'
 vim.o.wrap = false
