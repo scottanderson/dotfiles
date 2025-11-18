@@ -32,8 +32,6 @@ for f in \
     cvsignore \
     screenrc \
     tmux.conf \
-    vim \
-    vimrc \
     ; do
     DOTFILES="$(realpath --relative-to="$(dirname "${HOME}/.${f}")" "$(dirname "${BASH_SOURCE[0]}")")"
     source="$HOME/.$f"
