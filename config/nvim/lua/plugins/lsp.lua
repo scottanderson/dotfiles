@@ -12,6 +12,8 @@ return {
                     'lua_ls',
                     'rust_analyzer',
                     'ts_ls',
+                    'gopls',
+                    'golangci_lint_ls',
                 },
             }
         },
@@ -102,6 +104,10 @@ vim.lsp.enable('ts_ls')
 vim.lsp.config('eslint', {
 })
 vim.lsp.enable('eslint')
+
+-- Go LS config
+vim.lsp.enable('gopls')
+vim.lsp.enable('golangci_lint_ls')
 
 -- Completion
 local cmp = require('cmp')
