@@ -1,6 +1,7 @@
 #!/bin/bash
 
 export PATH=~/bin:$PATH
+export PATH=$PATH:/usr/local/go/bin:~/go/bin
 
 for f in ~/.bashrc-local \
          /etc/bash_completion.d/git-prompt \
