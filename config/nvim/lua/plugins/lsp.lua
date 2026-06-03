@@ -34,7 +34,12 @@ local on_attach = function(_, bufnr)
     local opts = { buffer = bufnr, remap = false }
     local n_v = { 'n', 'v' }
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    -- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', 'gd', function()
+        require('telescope.builtin').lsp_definitions({
+            -- jump_type = "vsplit",
+        })
+    end, opts)
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
     vim.keymap.set('n', 'go', vim.lsp.buf.type_definition, opts)
