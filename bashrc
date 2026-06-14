@@ -114,11 +114,6 @@ screen | screen-256color)
     ;;
 esac
 
-which nvim &> /dev/null || {
-    alias vim='nvim -v'
-    alias vi='nvim -v'
-}
-
 # Change to the git toplevel directory
 function croot() {
     local root
@@ -152,9 +147,7 @@ shopt -s cmdhist
 # after each command.
 _bash_history_sync() {
     builtin history -a
-    HISTFILESIZE=$HISTSIZE
-    builtin history -c
-    builtin history -r
+    builtin history -n
 }
 
 history() {
