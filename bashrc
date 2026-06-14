@@ -119,6 +119,13 @@ which nvim &> /dev/null || {
     alias vi='nvim -v'
 }
 
+# Change to the git toplevel directory
+function croot() {
+    local root
+    root=$(git rev-parse --show-toplevel) || return $?
+    cd "$root"
+}
+
 # Merica
 LANG=en_US.UTF-8
 
