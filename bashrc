@@ -160,3 +160,16 @@ PROMPT_COMMAND="_bash_history_sync;$PROMPT_COMMAND"
 # Unmap software flow control pause (Ctrl-S) and resume (Ctrl-Q)
 stty stop ''
 stty start ''
+
+# Start ssh-agent
+SSH_AGENT_ENV="$HOME/.ssh/agent.env"
+if [ -f "$SSH_AGENT_ENV" ]; then
+    source "$SSH_AGENT_ENV" > /dev/null
+fi
+ssh-add -l &> /dev/null
+if [ $? = 2 ]; then
+    echo "Starting ssh-agent..."
+    (umask 066; ssh-agent -s > "$SSH_AGENT_ENV")
+    source "$SSH_AGENT_ENV" > /dev/null
+    ssh-add
+fi
