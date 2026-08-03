@@ -14,6 +14,7 @@ return {
                     'ts_ls',
                     'gopls',
                     'golangci_lint_ls',
+                    'jsonls',
                 },
             }
         },
@@ -113,6 +114,16 @@ vim.lsp.enable('eslint')
 -- Go LS config
 vim.lsp.enable('gopls')
 vim.lsp.enable('golangci_lint_ls')
+
+-- JSON LS config
+vim.lsp.config('jsonls', {
+    settings = {
+        json = {
+            validate = { enable = true },
+        },
+    },
+})
+vim.lsp.enable('jsonls')
 
 -- Completion
 local cmp = require('cmp')
