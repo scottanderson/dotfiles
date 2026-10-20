@@ -7,7 +7,7 @@ for CMD in realpath; do
     }
 done
 git submodule update --init
-git config --global alias.l "log --graph --abbrev-commit --decorate --date=relative --format='%C(auto)%h - %C(bold green)(%ar)%C(reset)%C(auto) %s - %C(bold)%an%C(reset)%C(auto)%d'"
+git config --global alias.l "log --graph --abbrev-commit --decorate --date=relative --format='%C(auto)%h - %C(bold green)(%cr)%C(reset)%C(auto) %s - %C(bold)%an%C(reset) - %ar%C(auto)%d'"
 git config --global alias.lc '!f() {
     : git log
     if [ $# -eq 0 ]; then
@@ -15,7 +15,13 @@ git config --global alias.lc '!f() {
     elif [ $# -eq 1 ]; then
         f HEAD $1;
     else
-        git l "$@" ^$(git merge-base -a --octopus "$@")^@;
+        bases=$(git merge-base -a --octopus "$@") || bases=
+        if [ -n "$bases" ]; then
+            for base in $bases; do
+                set -- "$@" "^$base^@"
+            done
+        fi
+        git l "$@"
     fi;
 }; f'
 git config --global alias.la '!f() { git lc $(git rev-parse HEAD --all "$@"); }; f'
